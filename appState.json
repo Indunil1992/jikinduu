@@ -23,7 +23,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "jikinduu/lambda.js",
-        "code": "let SL_AWS = require('slappforge-sdk-aws');\nlet connectionManager = require('./ConnectionManager');\nconst rds = new SL_AWS.RDS(connectionManager);\n\nexports.handler = function (event, context, callback) {\n\n    // You can pass the existing connection to this function.\n    // A new connection will be created if it's not present as the third param \n    // You must always end/destroy the DB connection after it's used\n    rds.query({\n        instanceIdentifier: 'indu1',\n        query: 'name, age',\n        inserts: [\"indunil1\", 27]\n    }, function (error, results, connection) {\n        if (error) {\n            console.log(\"Error occurred\");\n            throw error;\n        } else {\n            console.log(\"Success\")\n            console.log(results);\n        }\n\n        connection.end();\n    });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let SL_AWS = require('slappforge-sdk-aws');\nlet connectionManager = require('./ConnectionManager');\nconst rds = new SL_AWS.RDS(connectionManager);\n\nexports.handler = function (event, context, callback) {\n\n    // You can pass the existing connection to this function.\n    // A new connection will be created if it's not present as the third param \n    // You must always end/destroy the DB connection after it's used\n    rds.query({\n        instanceIdentifier: 'indunil11',\n        query: 'name, age',\n        inserts: [\"indunil1\", 27]\n    }, function (error, results, connection) {\n        if (error) {\n            console.log(\"Error occurred\");\n            throw error;\n        } else {\n            console.log(\"Success\")\n            console.log(results);\n        }\n\n        connection.end();\n    });\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -42,7 +42,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "jikinduu/ConnectionManager.js",
-        "code": "module.exports = function() {\n    this.dbConnections = [];\n\n    this.dbConnections[\"indu1\"] = {\n        host: process.env.EndPoint_rdsIndu1,\n        port: process.env.Port_rdsIndu1,\n        user: process.env.User_rdsIndu1,\n        password: process.env.Password_rdsIndu1,\n        database: \"indu1\"\n    };\n};"
+        "code": "module.exports = function() {\n    this.dbConnections = [];\n\n    this.dbConnections[\"indunil11\"] = {\n        host: process.env.EndPoint_rdsIndunil11,\n        port: process.env.Port_rdsIndunil11,\n        user: process.env.User_rdsIndunil11,\n        password: process.env.Password_rdsIndunil11,\n        database: \"indunil11\"\n    };\n};"
       }
     },
     "rootNode": "f1a93a16-8568-431e-a3f6-161c9b0303c7",
@@ -51,8 +51,8 @@
     ],
     "currentFileId": "59d88559-7649-4229-ab64-ba5c2c9436fc",
     "resources": {
-      "rds-indu1": {
-        "name": "rds-indu1",
+      "rds-indunil11": {
+        "name": "rds-indunil11",
         "type": "RDS",
         "config": {
           "editMode": false,
@@ -66,18 +66,18 @@
               "dbEngineVersion": "5.7.19"
             },
             "rdsSetting": {
-              "instanceIdentifier": "indu1",
-              "masterUsername": "indu1",
-              "masterPassword": "indu1indu1"
+              "instanceIdentifier": "indunil11",
+              "masterUsername": "indunil11",
+              "masterPassword": "indunil11"
             },
             "rdsDBOptions": {
-              "dbName": "indu1",
+              "dbName": "indunil11",
               "dbPort": "3306"
             },
             "rdsInstanceArn": "",
             "Host": "",
             "doesExist": false,
-            "initializationQuery": "indu1",
+            "initializationQuery": "indunil11",
             "alreadyDeployed": false
           },
           "rdsInstanceResources": [],
@@ -127,7 +127,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1574832920232
+    "lastSave": 1574833872434
   },
   "VCS_STATE": {
     "provider": "GitHub",
