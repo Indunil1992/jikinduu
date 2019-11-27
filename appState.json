@@ -1,0 +1,139 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "f1a93a16-8568-431e-a3f6-161c9b0303c7": {
+        "id": "f1a93a16-8568-431e-a3f6-161c9b0303c7",
+        "parent": null,
+        "name": "jikinduu",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "59d88559-7649-4229-ab64-ba5c2c9436fc",
+          "a37e79b3-fd9a-4f26-9d66-ee3962188d5b"
+        ],
+        "isRemovable": false,
+        "filePath": "jikinduu"
+      },
+      "59d88559-7649-4229-ab64-ba5c2c9436fc": {
+        "id": "59d88559-7649-4229-ab64-ba5c2c9436fc",
+        "parent": "f1a93a16-8568-431e-a3f6-161c9b0303c7",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "jikinduu/lambda.js",
+        "code": "let SL_AWS = require('slappforge-sdk-aws');\nlet connectionManager = require('./ConnectionManager');\nconst rds = new SL_AWS.RDS(connectionManager);\n\nexports.handler = function (event, context, callback) {\n\n    // You can pass the existing connection to this function.\n    // A new connection will be created if it's not present as the third param \n    // You must always end/destroy the DB connection after it's used\n    rds.query({\n        instanceIdentifier: 'indu1',\n        query: 'name, age',\n        inserts: [\"indunil1\", 27]\n    }, function (error, results, connection) {\n        if (error) {\n            console.log(\"Error occurred\");\n            throw error;\n        } else {\n            console.log(\"Success\")\n            console.log(results);\n        }\n\n        connection.end();\n    });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": []
+      },
+      "a37e79b3-fd9a-4f26-9d66-ee3962188d5b": {
+        "id": "a37e79b3-fd9a-4f26-9d66-ee3962188d5b",
+        "parent": "f1a93a16-8568-431e-a3f6-161c9b0303c7",
+        "name": "ConnectionManager.js",
+        "type": "JS_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "jikinduu/ConnectionManager.js",
+        "code": "module.exports = function() {\n    this.dbConnections = [];\n\n    this.dbConnections[\"indu1\"] = {\n        host: process.env.EndPoint_rdsIndu1,\n        port: process.env.Port_rdsIndu1,\n        user: process.env.User_rdsIndu1,\n        password: process.env.Password_rdsIndu1,\n        database: \"indu1\"\n    };\n};"
+      }
+    },
+    "rootNode": "f1a93a16-8568-431e-a3f6-161c9b0303c7",
+    "openFiles": [
+      "59d88559-7649-4229-ab64-ba5c2c9436fc"
+    ],
+    "currentFileId": "59d88559-7649-4229-ab64-ba5c2c9436fc",
+    "resources": {
+      "rds-indu1": {
+        "name": "rds-indu1",
+        "type": "RDS",
+        "config": {
+          "editMode": false,
+          "operation": 0,
+          "rdsInstance": {
+            "rdsEngineType": "mysql",
+            "rdsEdition": "",
+            "rdsInstanceSpec": {
+              "dbInstanceClass": "db.t2.micro",
+              "dbLicenseModel": "general-public-license",
+              "dbEngineVersion": "5.7.19"
+            },
+            "rdsSetting": {
+              "instanceIdentifier": "indu1",
+              "masterUsername": "indu1",
+              "masterPassword": "indu1indu1"
+            },
+            "rdsDBOptions": {
+              "dbName": "indu1",
+              "dbPort": "3306"
+            },
+            "rdsInstanceArn": "",
+            "Host": "",
+            "doesExist": false,
+            "initializationQuery": "indu1",
+            "alreadyDeployed": false
+          },
+          "rdsInstanceResources": [],
+          "projectRegion": "us-east-1",
+          "mode": 0,
+          "additionalFiles": [],
+          "params": {
+            "query": "name, age",
+            "inserts": "\"indunil1\",27"
+          },
+          "isGlobalEditMode": false,
+          "enableInject": true,
+          "isNewFromGlobal": false
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "slappforge-sdk-aws": {
+          "name": "slappforge-sdk-aws",
+          "language": "javascript",
+          "version": "0.0.5",
+          "dev": false,
+          "notRemovable": false
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "jikinduu",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1574832920232
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "jikinduu",
+      "url": "https://github.com/Indunil1992/jikinduu"
+    }
+  }
+}
